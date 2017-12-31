@@ -1,31 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+//import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-//import { createStore } from 'redux';
-import createStore from './components/counter/createStore';
+import { createStore } from 'redux';
+//import createStore from './lib/createStore';
 import counter from './components/counter/counter';
 import { Provider } from 'react-redux';
+import CounterShow from './components/counter/CounterShow';
 
 const store = createStore(counter);
-
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
-registerServiceWorker();
-
 const render = () => {
-  document.body.innerText = store.getState();
+  ReactDOM.render(
+    <Provider store={store}>
+      <CounterShow
+        value={store.getState()}
+        onIncrement={() => {
+          store.dispatch({
+            type: 'INCREMENT'
+          })
+        }}
+        onDecrement={() => {
+          store.dispatch({
+            type: 'DECREMENT'
+          })
+        }}
+      />
+    </Provider>,
+    document.getElementById('root')
+  );
 }
+registerServiceWorker();
 
 store.subscribe(render);
 render();
-
-document.addEventListener('click', () => {
-  store.dispatch({ type: 'INCREMENT' });
-});
