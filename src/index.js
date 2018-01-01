@@ -9,6 +9,8 @@ import counter from './components/counter/counter';
 import todos from './components/todo/todos';
 import visibilityFilter from './components/visibilityFilter/visibilityFilter';
 
+import TodoList from './components/todo/TodoList';
+
 const root = combineReducers({
   counter,
   todos,
@@ -87,27 +89,15 @@ class TodoApp extends Component {
         }}>
           Add Todo
         </button>
-        <ul>
-          {visibleTodos.map(todo =>
-            <li
-              key={todo.id}
-              onClick={() => {
-                store.dispatch({
-                  type: 'TOGGLE_TODO',
-                  id: todo.id
-                });
-              }}
-              style={{
-                textDecoration:
-                  todo.completed ?
-                    'line-through' :
-                    'none'
-              }}
-            >
-              {todo.text}
-            </li>
-          )}
-        </ul>
+        <TodoList
+          todos={visibleTodos}
+          onTodoClick={id =>
+            store.dispatch({
+              type: 'TOGGLE_TODO',
+              id
+            })
+          }
+        />
         <p>
           Show:
           {' '}
