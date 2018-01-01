@@ -7,26 +7,33 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux';
 //import createStore from './lib/createStore';
 import counter from './components/counter/counter';
+import todos from './components/todo/todos';
+import visibilityFilter from './components/visibilityFilter/visibilityFilter';
 import { Provider } from 'react-redux';
-import CounterShow from './components/counter/CounterShow';
+//import CounterShow from './components/counter/CounterShow';
 
-const store = createStore(counter);
+const root = (state = {}, action) => {
+  return {
+    counter: counter(
+      state.counter,
+      action
+    ),
+    todos: todos(
+      state.todos,
+      action
+    ),
+    visibilityFilter: visibilityFilter(
+      state.visibilityFilter,
+      action
+    )
+  };
+};
+
+const store = createStore(root);
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <CounterShow
-        value={store.getState()}
-        onIncrement={() => {
-          store.dispatch({
-            type: 'INCREMENT'
-          })
-        }}
-        onDecrement={() => {
-          store.dispatch({
-            type: 'DECREMENT'
-          })
-        }}
-      />
+      <div></div>
     </Provider>,
     document.getElementById('root')
   );
