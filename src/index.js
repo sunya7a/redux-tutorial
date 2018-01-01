@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
+import combineReducers from './lib/combineReducers';
 import counter from './components/counter/counter';
 import todos from './components/todo/todos';
 import visibilityFilter from './components/visibilityFilter/visibilityFilter';
@@ -15,23 +16,6 @@ const root = combineReducers({
   todos,
   visibilityFilter
 });
-
-//const root = (state = {}, action) => {
-//  return {
-//    counter: counter(
-//      state.counter,
-//      action
-//    ),
-//    todos: todos(
-//      state.todos,
-//      action
-//    ),
-//    visibilityFilter: visibilityFilter(
-//      state.visibilityFilter,
-//      action
-//    )
-//  };
-//};
 
 const store = createStore(root);
 const render = () => {
