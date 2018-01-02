@@ -13,24 +13,22 @@ import AddTodo from './components/todo/AddTodo';
 import VisibleTodoList from './components/todo/VisibleTodoList';
 import Footer from './components/todo/Footer';
 
+const TodoApp = ({ store }) => (
+  <div>
+    <AddTodo store={store} />
+    <VisibleTodoList store={store} />
+    <Footer store={store} />
+  </div>
+);
+
 const root = combineReducers({
   counter,
   todos,
   visibilityFilter
 });
 
-const store = createStore(root);
-
-const TodoApp = () => (
-  <div>
-    <AddTodo />
-    <VisibleTodoList />
-    <Footer />
-  </div>
-);
-
 ReactDOM.render(
-  <TodoApp />,
+  <TodoApp store={createStore(root)} />,
   document.getElementById('root')
 );
 registerServiceWorker();

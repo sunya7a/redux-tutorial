@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import todos from './components/todo/todos';
-import visibilityFilter from './components/todo/visibilityFilter';
-import TodoList from './components/todo/TodoList';
+import TodoList from './TodoList';
 import getVisibleTodos from '../../lib/getVisibleTodos';
 
 class VisibleTodoList extends Component {
   componentDidMount() {
+    const { store } = this.props;
     this.unsubscribe = store.subscribe(() => {
       this.forceUpdate();
     });
@@ -16,15 +15,15 @@ class VisibleTodoList extends Component {
   }
 
   render() {
-    const props = this.props;
+    const { store } = this.props;
     const state = store.getState();
 
     return (
       <TodoList
         todos={
           getVisibleTodos(
-            todos,
-            visibilityFilter
+            state.todos,
+            state.visibilityFilter
           )
         }
         onTodoClick={id =>
@@ -37,3 +36,5 @@ class VisibleTodoList extends Component {
     );
   }
 }
+
+export default VisibleTodoList;
