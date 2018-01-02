@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 import { createStore, combineReducers } from 'redux';
-import PropTypes from 'prop-types';
+import { Provider } from 'react-redux';
 
 import counter from './components/counter/counter';
 import todos from './components/todo/todos';
@@ -21,21 +21,6 @@ const TodoApp = () => (
     <Footer />
   </div>
 );
-
-class Provider extends Component {
-  getChildContext() {
-    return {
-      store: this.props.store
-    };
-  }
-
-  render() {
-    return this.props.children;
-  }
-}
-Provider.childContextTypes = {
-  store: PropTypes.object
-};
 
 const root = combineReducers({
   counter,
