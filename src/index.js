@@ -28,8 +28,23 @@ const root = combineReducers({
   visibilityFilter
 });
 
+const persistedState = {
+  todos: [
+    {
+      id: '0',
+      text: 'Welcome back!',
+      completed: true
+    },
+    {
+      id: '1',
+      text: 'Learn redux',
+      completed: false
+    }
+  ]
+};
+
 ReactDOM.render(
-  <Provider store={createStore(root)}>
+  <Provider store={createStore(root, persistedState)}>
     <TodoApp />
   </Provider>,
   document.getElementById('root')
