@@ -10,6 +10,7 @@ const Link = ({
   }
 
   return (
+    // eslint-disable-next-line
     <a href='#'
       onClick={e => {
         e.preventDefault();
