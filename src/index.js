@@ -9,8 +9,8 @@ import counter from './components/counter/counter';
 import todos from './components/todo/todos';
 import visibilityFilter from './components/todo/visibilityFilter';
 
-import TodoList from './components/todo/TodoList';
 import AddTodo from './components/todo/AddTodo';
+import VisibleTodoList from './components/todo/VisibleTodoList';
 import Footer from './components/todo/Footer';
 
 const root = combineReducers({
@@ -21,68 +21,16 @@ const root = combineReducers({
 
 const store = createStore(root);
 
-const getVisibleTodos = (
-  todos,
-  filter
-) => {
-  switch (filter) {
-    case 'SHOW_ALL':
-      return todos;
-    case 'SHOW_ACTIVE':
-      return todos.filter(
-        t => !t.completed
-      );
-    case 'SHOW_COMPLETED':
-      return todos.filter(
-        t => t.completed
-      );
-    default:
-      return todos;
-  }
-};
-
-let nextTodoId = 0;
-const TodoApp = ({
-  todos,
-  visibilityFilter
-}) => (
+const TodoApp = () => (
   <div>
-    <AddTodo
-      onAddClick={text =>
-        store.dispatch({
-          type: 'ADD_TODO',
-          text: text,
-          id: nextTodoId++
-        })
-      }
-    />
-    <TodoList
-      todos={
-        getVisibleTodos(
-          todos,
-          visibilityFilter
-        )
-      }
-      onTodoClick={id =>
-        store.dispatch({
-          type: 'TOGGLE_TODO',
-          id
-        })
-      }
-    />
+    <AddTodo />
+    <VisibleTodoList />
     <Footer />
   </div>
 );
 
-const render = () => {
-  ReactDOM.render(
-    <TodoApp
-      {...store.getState()}
-    />,
-    document.getElementById('root')
-  );
-}
+ReactDOM.render(
+  <TodoApp />,
+  document.getElementById('root')
+);
 registerServiceWorker();
-
-store.subscribe(render);
-render();
