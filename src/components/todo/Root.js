@@ -8,7 +8,7 @@ const Root = ({ store }) => (
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={TodoApp} />
+        <Route path="/:filter?" component={TodoApp} />
       </Switch>
     </BrowserRouter>
   </Provider>
