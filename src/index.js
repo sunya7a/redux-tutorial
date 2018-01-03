@@ -14,6 +14,9 @@ import AddTodo from './components/todo/AddTodo';
 import VisibleTodoList from './components/todo/VisibleTodoList';
 import Footer from './components/todo/Footer';
 
+import { loadState, saveState } from './lib/localStorage';
+import throttle from 'lodash/throttle';
+
 const TodoApp = () => (
   <div>
     <AddTodo />
@@ -28,23 +31,17 @@ const root = combineReducers({
   visibilityFilter
 });
 
-const persistedState = {
-  todos: [
-    {
-      id: '0',
-      text: 'Welcome back!',
-      completed: true
-    },
-    {
-      id: '1',
-      text: 'Learn redux',
-      completed: false
-    }
-  ]
-};
+const persistedState = loadState();
+const store = createStore(root, persistedState)
+
+store.subscribe(throttle(() => {
+  saveState({
+    todos: store.getState().todos
+  });
+}, 1000));
 
 ReactDOM.render(
-  <Provider store={createStore(root, persistedState)}>
+  <Provider store={store}>
     <TodoApp />
   </Provider>,
   document.getElementById('root')
