@@ -4,13 +4,11 @@ import { loadState, saveState } from './localStorage';
 
 import counter from '../components/counter/counter';
 import todos from '../components/todo/todos';
-import visibilityFilter from '../components/todo/visibilityFilter';
 
 const configureStore = () => {
   const root = combineReducers({
     counter,
-    todos,
-    visibilityFilter
+    todos
   });
   const persistedState = loadState();
   const store = createStore(root, persistedState)

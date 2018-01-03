@@ -4,10 +4,10 @@ import TodoList from './TodoList';
 import getVisibleTodos from '../../lib/getVisibleTodos';
 import { toggleTodo } from './actions';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   todos: getVisibleTodos(
     state.todos,
-    state.visibilityFilter
+    ownProps.filter
   )
 });
 
