@@ -3,7 +3,7 @@ import throttle from 'lodash/throttle';
 import { loadState, saveState } from './localStorage';
 
 import counter from '../components/counter/counter';
-import todos from '../components/todo/todos';
+import todos, * as fromTodos from '../components/todo/todos';
 
 const configureStore = () => {
   const root = combineReducers({
@@ -22,5 +22,14 @@ const configureStore = () => {
   return store
 };
 
-
 export default configureStore;
+
+export const getVisibleTodos = (
+  state,
+  filter
+) => (
+  fromTodos.getVisibleTodos(
+    state.todos,
+    filter
+  )
+);
