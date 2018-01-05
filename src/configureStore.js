@@ -3,7 +3,6 @@ import promise from 'redux-promise';
 import { createLogger } from 'redux-logger';
 
 import app from './reducers';
-import * as fromTodos from './reducers/todos';
 
 const configureStore = () => {
   const middlewares = [promise];
@@ -19,15 +18,3 @@ const configureStore = () => {
 };
 
 export default configureStore;
-
-export const getCounterValue = state => state.counter;
-
-export const getVisibleTodos = (
-  state,
-  filter
-) => (
-  fromTodos.getVisibleTodos(
-    state.todos,
-    filter
-  )
-);

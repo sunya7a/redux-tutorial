@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import CounterDisplay from './CounterDisplay';
-import { getCounterValue } from '../../configureStore';
+import { getCounterValue } from '../../reducers';
 
 const mapStateToProps = (state) => {
   return {
