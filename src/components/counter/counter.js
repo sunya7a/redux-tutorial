@@ -1,12 +1,33 @@
-const counter = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
-    default:
-      return state;
-  }
-}
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-export default counter;
+import CounterDisplay from './CounterDisplay';
+import { getCounterValue } from '../../configureStore';
+
+const mapStateToProps = (state) => {
+  return {
+    value: getCounterValue(state)
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIncrement: () => {
+      dispatch({
+        type: 'INCREMENT'
+      })
+    },
+    onDecrement: () => {
+      dispatch({
+        type: 'DECREMENT'
+      })
+    }
+  };
+};
+
+const Counter = withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CounterDisplay));
+
+export default Counter;

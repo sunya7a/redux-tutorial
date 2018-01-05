@@ -1,5 +1,5 @@
 import createStore from './createStore';
-import counter from '../components/counter/counter';
+import counter from '../reducers/counter';
 
 const store = createStore(counter);
 

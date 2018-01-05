@@ -4,7 +4,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 import Root from './components/todo/Root';
-import configureStore from './lib/configureStore';
+import configureStore from './configureStore';
 
 const store = configureStore();
 

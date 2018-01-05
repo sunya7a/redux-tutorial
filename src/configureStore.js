@@ -2,8 +2,8 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
 import { createLogger } from 'redux-logger';
 
-import counter from '../components/counter/counter';
-import todos, * as fromTodos from '../components/todo/todos';
+import counter from './reducers/counter';
+import todos, * as fromTodos from './components/todo/todos';
 
 const configureStore = () => {
   const root = combineReducers({
@@ -24,6 +24,8 @@ const configureStore = () => {
 };
 
 export default configureStore;
+
+export const getCounterValue = state => state.counter;
 
 export const getVisibleTodos = (
   state,

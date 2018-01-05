@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CounterShow = ({
+const CounterDisplay = ({
   value,
   onIncrement,
   onDecrement
@@ -12,4 +12,4 @@ const CounterShow = ({
   </div>
 );
 
-export default CounterShow;
+export default CounterDisplay;

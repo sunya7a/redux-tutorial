@@ -1,5 +1,5 @@
 import { v4 } from 'node-uuid';
-import * as api from '../../api';
+import * as api from '../api';
 
 export const addTodo = (text) => ({
   type: 'ADD_TODO',
