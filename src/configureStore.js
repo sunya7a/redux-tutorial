@@ -1,16 +1,11 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
 import { createLogger } from 'redux-logger';
 
-import counter from './reducers/counter';
-import todos, * as fromTodos from './components/todo/todos';
+import app from './reducers';
+import * as fromTodos from './reducers/todos';
 
 const configureStore = () => {
-  const root = combineReducers({
-    counter,
-    todos
-  });
-
   const middlewares = [promise];
 
   if (process.env.NODE_ENV !== 'production') {
@@ -18,7 +13,7 @@ const configureStore = () => {
   }
 
   return createStore(
-    root,
+    app,
     applyMiddleware(...middlewares)
   );
 };
