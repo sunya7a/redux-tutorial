@@ -20,6 +20,16 @@ export const getIsFetching = (
   )
 );
 
+export const getErrorMessage = (
+  state,
+  filter,
+) => (
+  fromTodos.getErrorMessage(
+    state.todos,
+    filter,
+  )
+);
+
 export const getVisibleTodos = (
   state,
   filter,
