@@ -1,3 +1,10 @@
+Learn Redux from its creator:
+
+[Part 1: Getting Started with Redux (30 free videos)](https://egghead.io/series/getting-started-with-redux)
+
+[Part 2: Building React Applications with Idiomatic Redux (27 free videos)](https://egghead.io/courses/building-react-applications-with-idiomatic-redux)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
